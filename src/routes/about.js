@@ -7,7 +7,8 @@ export default function About(){
     return (
         <>
             <h2>About</h2>
-            <button onClick={() => navigate('/contact')}>Contact</button>
+            <button onClick={() => navigate('/contact?product_name=iPad',
+            {state:'test7'})}>Contact</button>
         </>
     )
 }

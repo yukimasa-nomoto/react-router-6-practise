@@ -1,5 +1,5 @@
 //import logo from './logo.svg';
-import {Routes,Route} from 'react-router-dom'
+import {Routes,Route, Outlet} from 'react-router-dom'
 import './App.css';
 import Home from './routes/home'
 import About from './routes/about'
@@ -9,6 +9,14 @@ import CustomLink from './routes/CustomLink';
 import Posts from './routes/posts'
 import Post from './routes/post'
 import PostIndex from './routes/postindex';
+
+const Layout = () =>{
+  return(
+    <div style={{display:'flex',justifyContent:'center'}}>
+      <Outlet />
+    </div>
+  )
+}
 
 function App() {
   return (
@@ -29,12 +37,14 @@ function App() {
         </li>
       </ul>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact message="Hello Contact" />} />
-        <Route path="/posts" element={<Posts />} >
-          <Route index element={<PostIndex />} />
-          <Route path=":postId" element={<Post />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact message="Hello Contact" />} />
+          <Route path="/posts" element={<Posts />} >
+            <Route index element={<PostIndex />} />
+            <Route path=":postId" element={<Post />} />
+          </Route>
         </Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>
